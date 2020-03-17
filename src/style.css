@@ -28,8 +28,8 @@
 }
 
 img {
-  width: 225px;
-  height: 225px;
+  width: 185px;
+  height: 185px;
 }
 
 @keyframes img {
@@ -75,6 +75,7 @@ ul {
 }
 
 .col-md-4 > h3 {
-  margin-top: auto;
+  margin-top: 45%;
+  font-size: 50px;
   
 }

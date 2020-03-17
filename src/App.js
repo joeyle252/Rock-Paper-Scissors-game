@@ -18,12 +18,13 @@ export const CHOICES = {
   },
   paper: {
     name: "paper",
-    url: "http://pngimagesfree.com/Paper/Thumb/blank-note-paper-free-clipa.png"
+    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ0W6mM0mfF94P0N5CYMrOUbVRiBjTSu1yYERoSdzD4fCF1T32g"
   },
   rock: {
     name: "rock",
     url:
-      "https://opengameart.org/sites/default/files/forum-attachments/very%20simple%20rock_0.png"
+    "https://images-na.ssl-images-amazon.com/images/I/81qU%2BOOyY2L._AC_SX522_.jpg"
+      // "https://opengameart.org/sites/default/files/forum-attachments/very%20simple%20rock_0.png"
   }
 };
 
