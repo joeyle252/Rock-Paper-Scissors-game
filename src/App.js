@@ -11,7 +11,7 @@ import ChoiceCard from './Components/ChoiceCard.js';
 // };
 
 export const CHOICES = {
-  
+
   scissors: {
     name: "scissors",
     url: "http://www.pngmart.com/files/1/Scissors-PNG-Pic.png"
@@ -31,7 +31,7 @@ export const getRandomChoice = () => {
   let choiceNames = Object.keys(CHOICES); // returns an array of the keys, so: ['scissors', 'paper', 'rock']
   let randomIndex = Math.floor(Math.random() * 3); // either 0, 1, or 2
   let choiceName = choiceNames[randomIndex];
-  
+
   return CHOICES[choiceName];
 };
 
@@ -49,25 +49,27 @@ export const getRoundOutcome = userChoice => {
     result = computerChoice === "paper" ? "Victory!" : "Defeat!";
   }
 
-  if (userChoice === computerChoice) result = "Tie game!";
+  if (userChoice === computerChoice) result = "Tie!";
   return [result, computerChoice];
 };
 
 function App() {
-  const [prompt,setGameState] = useState("START");
-  const [playerChoice,setPlayerChoice] = useState (null);
-  const [computerChoice,setComputerChoice] = useState (null);
+  const [prompt, setGamePrompt] = useState("START");
+  const [playerChoice, setPlayerChoice] = useState(null);
+  const [computerChoice, setComputerChoice] = useState(null);
   const [previousWinner, setPreviousWinner] = useState(null);
+  const [gameHistory, setGameHistory] = useState([]);
+
 
   const onPlayerChoose = playerChoice => {
     const [result, computerChoice] = getRoundOutcome(playerChoice);
     const newComputerChoice = CHOICES[computerChoice]
     const newUserChoice = CHOICES[playerChoice];
     setPlayerChoice(newUserChoice);
-    setComputerChoice (newComputerChoice);
+    setComputerChoice(newComputerChoice);
 
     // console.log('result',result);
-    console.log('computerchoice',computerChoice);
+    // console.log('computerchoice',computerChoice);
 
     if (result === "Victory!") {
       setPreviousWinner("You");
@@ -76,7 +78,12 @@ function App() {
     } else {
       setPreviousWinner("Tie");
     }
-    
+
+    setGamePrompt(result);
+    gameHistory.push(result);
+    setGameHistory(gameHistory);
+    // console.log('history',gameHistory)
+
   };
   return (
     <div className="App">
@@ -85,8 +92,8 @@ function App() {
           <div className="col-md-8 themed-grid-col">
             <ChoiceCard
               title="Computer"
-              previousWinner = {previousWinner}
-              imgURL = {computerChoice && computerChoice.url}
+              previousWinner={previousWinner}
+              imgURL={computerChoice && computerChoice.url}
             />
             <h1> {prompt} </h1>
             <div className="container">
@@ -111,9 +118,19 @@ function App() {
             </div>
             <ChoiceCard
               title="You"
-              previousWinner = {previousWinner}
-              imgURL = {playerChoice && playerChoice.url}
+              previousWinner={previousWinner}
+              imgURL={playerChoice && playerChoice.url}
             />
+          </div>
+          <div>
+            <div className="col-md-4 themed-grid-col">
+              <h3>History</h3>
+              <ul>
+                {gameHistory.map(result => {
+                  return <li key={result}>{result}</li>;
+                })}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

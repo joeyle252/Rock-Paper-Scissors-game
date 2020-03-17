@@ -50,3 +50,7 @@ button {
 ul {
   list-style: none;
 }
+.col-md-4 {
+  width: 300px;
+  margin: auto;
+}
