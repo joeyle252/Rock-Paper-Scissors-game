@@ -2,16 +2,16 @@
 import React from 'react';
 
 const DEFAULT_IMG =
-  "http://www.thewateringhole.co.uk/wp-content/uploads/2012/12/play.png";
+  "https://lh3.googleusercontent.com/zpM9mz-mAHTM0FjXVAiCTMbFew-a7dmk70iiUXlszoW-lg1Br6vGkvkCmLdAA_cdh11E";
 
 export default function ChoiceCard(props) {
     const won = props.title === props.previousWinner;
-    console.log(props.title, props.previousWinner, won) // test di
+    console.log(props.title, props.previousWinner, won)
     let className;
     const hasPreviousGame =
         props.previousWinner === "Computer" || props.previousWinner === "You";
     if (hasPreviousGame) {
-        className = won ? "winner" : "loser";  // ah khoan
+        className = won ? "winner" : "loser";
     }
 
     let prompt;

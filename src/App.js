@@ -68,9 +68,6 @@ function App() {
     setPlayerChoice(newUserChoice);
     setComputerChoice(newComputerChoice);
 
-    // console.log('result',result);
-    // console.log('computerchoice',computerChoice);
-
     if (result === "Victory!") {
       setPreviousWinner("You");
     } else if (result === "Defeat!") {
@@ -82,7 +79,6 @@ function App() {
     setGamePrompt(result);
     gameHistory.push(result);
     setGameHistory(gameHistory);
-    // console.log('history',gameHistory)
 
   };
   return (
@@ -126,8 +122,8 @@ function App() {
             <div className="col-md-4 themed-grid-col">
               <h3>History</h3>
               <ul>
-                {gameHistory.map(result => {
-                  return <li key={result}>{result}</li>;
+                {gameHistory.map((result,index) => {
+                  return <li key={index}>{result}</li>;
                 })}
               </ul>
             </div>
