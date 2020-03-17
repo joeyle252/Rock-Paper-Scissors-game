@@ -3,12 +3,12 @@ import './style.css';
 import React, { useState } from "react";
 import ChoiceCard from './Components/ChoiceCard.js';
 
-const choices = {
-  rock:
-    "https://opengameart.org/sites/default/files/forum-attachments/very%20simple%20rock_0.png",
-  paper: "http://pngimagesfree.com/Paper/Thumb/blank-note-paper-free-clipa.png",
-  scissors: "http://www.pngmart.com/files/1/Scissors-PNG-Pic.png"
-};
+// const choices = {
+//   rock:
+//     "https://opengameart.org/sites/default/files/forum-attachments/very%20simple%20rock_0.png",
+//   paper: "http://pngimagesfree.com/Paper/Thumb/blank-note-paper-free-clipa.png",
+//   scissors: "http://www.pngmart.com/files/1/Scissors-PNG-Pic.png"
+// };
 
 export const CHOICES = {
   
@@ -26,8 +26,6 @@ export const CHOICES = {
       "https://opengameart.org/sites/default/files/forum-attachments/very%20simple%20rock_0.png"
   }
 };
-
-
 
 export const getRandomChoice = () => {
   let choiceNames = Object.keys(CHOICES); // returns an array of the keys, so: ['scissors', 'paper', 'rock']
@@ -55,33 +53,40 @@ export const getRoundOutcome = userChoice => {
   return [result, computerChoice];
 };
 
-
 function App() {
-  const [prompt, setGamePrompt] = useState("START");
+  const [prompt,setGameState] = useState("START");
   const [playerChoice,setPlayerChoice] = useState (null);
-    const [computerChoice,setComputerChoice] = useState (null);
+  const [computerChoice,setComputerChoice] = useState (null);
+  const [previousWinner, setPreviousWinner] = useState(null);
 
   const onPlayerChoose = playerChoice => {
-    const [result, compChoice] = getRoundOutcome(playerChoice);
+    const [result, computerChoice] = getRoundOutcome(playerChoice);
+    const newComputerChoice = CHOICES[computerChoice]
     const newUserChoice = CHOICES[playerChoice];
-    const newComputerChoice = CHOICES[compChoice];
     setPlayerChoice(newUserChoice);
     setComputerChoice (newComputerChoice);
 
-    console.log('result',result);
-    console.log('computerchoice',compChoice);
+    // console.log('result',result);
+    console.log('computerchoice',computerChoice);
+
+    if (result === "Victory!") {
+      setPreviousWinner("You");
+    } else if (result === "Defeat!") {
+      setPreviousWinner("Computer");
+    } else {
+      setPreviousWinner("Tie");
+    }
     
   };
   return (
-
     <div className="App">
       <div className="container">
         <div className="row mb-3">
           <div className="col-md-8 themed-grid-col">
-
             <ChoiceCard
-              title="You"
-              imgURL = {playerChoice && playerChoice.url}
+              title="Computer"
+              previousWinner = {previousWinner}
+              imgURL = {computerChoice && computerChoice.url}
             />
             <h1> {prompt} </h1>
             <div className="container">
@@ -105,8 +110,9 @@ function App() {
         </button>
             </div>
             <ChoiceCard
-              title="Computer"
-              imgURL = {computerChoice && computerChoice.url}
+              title="You"
+              previousWinner = {previousWinner}
+              imgURL = {playerChoice && playerChoice.url}
             />
           </div>
         </div>

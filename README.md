@@ -1,3 +1,21 @@
+
+Required Features 🎯
+[ ] User can see two of the same ChoiceCard components.
+[ ] User can see two different titles in our ChoiceCard components.
+[ ] User can see two different images in our ChoiceCard components.
+[ ] User can see two different prompts in our ChoiceCard components.
+[ ] User can see two different border colors in our ChoiceCard components.
+
+[ ] User can see three buttons labeled Rock, Paper, Scissors.
+[ ] User can press one of the buttons to make their choice.
+[ ] User faces a computer who also makes a choice from Rock, Paper or Scissors.
+[ ] User can see text indicating that they've won, lost, or tied.
+[ ] User can see either green/red depending on whether or not they've won.
+[ ] User can see a game history which lists the rounds played so far and outcome.
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
